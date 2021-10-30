@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格布局</title>
+</head>
+<body>
+<table width="100%" bgcolor="#f2f2f2">
+    <!--上空行-->
+    <tr height="10px">
+        <td></td>
+    </tr>
+    <!--内容-->
+    <tr>
+        <td>
+            <table align="center" width="1024px">
+                <tr>
+                    <td width="100px"  valign="top">
+                        <table width="100%" bgcolor="#ffffff">
+                            {%var data = [1,2,3,4,5,6,7,8,9,10]%}
+                            {% for i in data %}
+                            <tr><td align="center" height="60px">Rank{{i}}</td></tr>
+                            {% endfor %}
+                        </table>
+                    </td> <!--左内容-->
+                    <td width="20px"></td> <!--空隙-->
+                    <td width="764px" bgcolor="#ffffff">
+                        <table width="100%" bgcolor="#ffffff">
+                            {% for i in users %}
+                            <tr><td align="center" height="60px">{{i}}</td></tr>
+                            {% endfor %}
+                        </table>
+
+                    </td> <!--右内容:单元格宽度的和=表格宽度1024px-->
+            </table>
+
+        </td>
+    </tr>
+    <!--下空行-->
+</table>
+</body>
+</html>
