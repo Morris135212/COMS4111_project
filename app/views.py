@@ -46,3 +46,20 @@ def comp():
     return render_template("competition.html", **context)
 
 
+@app.route('/sign_in', methods=['GET', 'POST'])
+def sign():
+    fname = request.form['fname']
+    lname = request.form['lname']
+    web = request.form['web']
+    university = request.form['university']
+    print(f"fname: {fname}, lname: {lname}, web:{web}, university: {university}")
+    sql = "SELECT * FROM USERS " \
+          "WHERE f_name = %s AND l_name = %s AND webpage_link = %s AND UNIVERSITY_name = %s"
+    results = g.conn.execute(sql, fname, lname, web, university).fetchall()
+    print(results)
+    if results:
+        return render_template("index.html")
+    context = dict(error="User not found in database")
+    return render_template("500.html", **context)
+
+
