@@ -11,8 +11,8 @@ class Competition:
                f"end at: {self.end_date} with prize: {self.prize}"
 
 
-class DataSet:
-    def __init__(self, idx, name, provenance):
+class DataSets:
+    def __init__(self, name, idx, provenance):
         self.idx = idx
         self.name = name
         self.provenance = provenance

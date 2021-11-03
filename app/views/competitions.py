@@ -21,7 +21,6 @@ def comp():
     cursor = g.conn.execute('SELECT * FROM competitions WHERE name = %s', name)
     result = cursor.fetchone()
     competition = Competition(*result)
-    # print(competition)
     sql = "SELECT u.f_name, u.l_name, t.score from USERS u " \
           "INNER JOIN  Take t ON u.u_id = t.u_id " \
           "WHERE t.c_name = %s " \
