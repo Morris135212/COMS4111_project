@@ -37,3 +37,9 @@ def detail():
     context = dict(tasks=tasks, dataset=data.name)
     print(f"{context}, idx: {idx}")
     return render_template("tasks.html", **context)
+
+
+@app.route("/contribute", methods=["POST", "GET"])
+def contribute():
+    context = dict(operation="Contribute")
+    return render_template("contribute.html", **context)

@@ -3,6 +3,8 @@ pip install SQLAlchemy==0.7.9
 pip install flask-sqlalchemy
 pip install flask-migrate
 pip install sqlalchemy-migrate
+pip install click
 flask~=2.0.2
 markupsafe~=2.0.1
 sqlalchemy~=1.4.26
+click~=8.0.3

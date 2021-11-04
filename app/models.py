@@ -19,9 +19,10 @@ class DataSets:
 
 
 class Users:
-    def __init__(self, u_id, university_name, f_name,
-                 l_name, webpage_link,
-                 gold_medal=0, silver_medal=0, bronze_medal=0):
+    def __init__(self, u_id, f_name, l_name,
+                 webpage_link,
+                 gold_medal, silver_medal, bronze_medal,
+                 university_name):
         self.u_id = u_id
         self.university_name = university_name
         self.f_name = f_name

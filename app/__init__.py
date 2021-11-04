@@ -7,4 +7,4 @@ app = Flask(__name__, template_folder=tmpl_dir)  # 实例化一个flask 对象
 # from app import views
 
 from app import config
-from app.views import competitions, dataset, courses
+from app.views import competitions, dataset, courses, users
