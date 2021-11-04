@@ -37,6 +37,11 @@ def comp():
         l_name.append(participant.l_name)
         scores.append(participant.score)
 
+    sql = "SELECT COUNT(*) FROM USERS u " \
+          "WHERE u.u_id in " \
+          "(SELECT u_id from Take t " \
+          "WHERE t.c_name = %s);"
+    cursor = g.conn.execute(sql, name).fetchone()
     context = dict(competition=competition.name,
                    start_date=competition.start_date,
                    end_date=competition.end_date,
@@ -44,7 +49,8 @@ def comp():
                    rank=rank,
                    f_name=f_name,
                    l_name=l_name,
-                   scores=scores)
+                   scores=scores,
+                   num=cursor[0])
     print(context)
     return render_template("competition.html", **context)
 

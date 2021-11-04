@@ -65,7 +65,7 @@ class University:
 
 
 class Course:
-    def __int__(self, idx, name, description):
+    def __init__(self, idx, name, description):
         self.idx = idx
         self.name = name
         self.description = description
