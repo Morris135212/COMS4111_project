@@ -63,7 +63,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="#"><i class="icon-study"></i>{{operation}}</a></div>
+						<div id="fh5co-logo"><a href="index.html"><i class="icon-study"></i>Success</a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
@@ -87,7 +87,8 @@
 		   			<div class="row">
 			   			<div class="col-md-8 col-md-offset-2 text-center slider-text">
 			   				<div class="slider-text-inner">
-			   					<h1 class="heading-section">Thanks for your {{operation}}!</h1>
+			   					<h1 class="heading-section">Successful!</h1>
+								<h1 class="heading-section">Congratulation! {{message}}</h1>
 			   				</div>
 			   			</div>
 			   		</div>
@@ -96,50 +97,8 @@
 		  	</ul>
 	  	</div>
 	</aside>
-
-	<div id="fh5co-contact">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 animate-box">
-					<h3>{{operation}} for a dataset</h3>
-					<form method="POST" action="/operation">
-						<div class="row form-group">
-							<div class="col-md-6">
-								<!-- <label for="fname">First Name</label> -->
-								<input type="text" name="fname" class="form-control" placeholder="Your firstname">
-							</div>
-							<div class="col-md-6">
-								<!-- <label for="lname">Last Name</label> -->
-								<input type="text" name="lname" class="form-control" placeholder="Your lastname">
-							</div>
-						</div>
-
-						<div class="row form-group">
-							<div class="col-md-12">
-								<input type="text" name="dname" class="form-control" placeholder="Dataset name">
-							</div>
-						</div>
-
-						<div class="row form-group">
-							<div class="col-md-12">
-								<!-- <label for="subject">Subject</label> -->
-								<input type="text" name="provenance" class="form-control" placeholder="Provenance">
-							</div>
-						</div>
-						<div class="form-group">
-							<input type="submit" value={{operation}} name="operation" class="btn btn-primary">
-						</div>
-					</form>
-				</div>
-			</div>
-
-		</div>
-	</div>
 	</div>
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
 
 	<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
 	<!-- jQuery Easing -->

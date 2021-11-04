@@ -120,11 +120,10 @@
 				<form method="POST" action="/dataset_detail">
 					<div class="col-md-6 animate-box">
 						<div class="course">
-							<a href="#" class="course-img" style="background-image: url(static/images/project-1.jpg);">
+							<a href="{{dataset.provenance|e}}" class="course-img" style="background-image: url(static/images/project-1.jpg);">
 							</a>
 							<div class="desc">
 								<h3 class="dd"><a href="#">{{dataset.name|e}}</a></h3>
-								<h3><i class="icon-study"></i><a href="{{dataset.provenance|e}}">link</a></h3>
 								<input type="hidden" name="dataset_idx" value={{dataset.idx|e}}>
 								<input type="submit" class="btn btn-primary btn-sm btn-course" value="detail">
 							</div>
