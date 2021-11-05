@@ -17,7 +17,7 @@ def users():
     return render_template("users.html", **context)
 
 
-@app.route("/followers")
+@app.route("/follower")
 def followers():
     """
     Search followers for certain users
