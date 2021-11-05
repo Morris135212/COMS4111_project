@@ -51,17 +51,7 @@
 	<!--[if lt IE 9]>
 	<script src="{{url_for('static', filename='js/respond.min.js')}}"></script>
 	<![endif]-->
-	<style type="text/css">
-	.dd
-	{
-	border: solid 1px gray;
-	width:180px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	course:hand;
-	}
-	</style>
+
 	</head>
 	<body>
 
@@ -73,7 +63,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="#"><i class="icon-study"></i>Tasks</a></div>
+						<div id="fh5co-logo"><a href="#"><i class="icon-study"></i>Submit</a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
@@ -84,7 +74,6 @@
 						</ul>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</nav>
@@ -98,7 +87,7 @@
 		   			<div class="row">
 			   			<div class="col-md-8 col-md-offset-2 text-center slider-text">
 			   				<div class="slider-text-inner">
-			   					<h1 class="heading-section">{{dataset.name|e}}</h1>
+			   					<h1 class="heading-section">Submit code for {{task.name|e}}!</h1>
 			   				</div>
 			   			</div>
 			   		</div>
@@ -108,42 +97,51 @@
 	  	</div>
 	</aside>
 
-	<div id="fh5co-course">
+	<div id="fh5co-contact">
 		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Our tasks for {{dataset.name|e}}</h2>
-				</div>
-			</div>
 			<div class="row">
-				{% for task in tasks %}
-				<form method="POST" action="/task">
-					<div class="col-md-6 animate-box">
-						<div class="course">
-							<a href="/task?t_id={{task.t_id|e}}" class="course-img" style="background-image: url(static/images/project-6.jpg);">
-							</a>
-							<div class="desc">
-								<h3><a href="#">{{task.name|e}}</a></h3>
-								<h3 class="dd"><a href="#">{{task.description|e}}</a></h3>
-								<input type="hidden" name="t_id" value={{task.t_id|e}}>
-								<input type="hidden" name="d_id" value={{dataset.idx|e}}>
-								<input type="submit" class="btn btn-primary btn-sm btn-course" value="detail">
+				<div class="col-md-6 animate-box">
+					<h3>Submit for a dataset</h3>
+					<form method="POST" action="/submit_code">
+						<div class="row form-group">
+							<div class="col-md-6">
+								<!-- <label for="fname">First Name</label> -->
+								<input type="text" name="fname" class="form-control" placeholder="Your firstname">
+							</div>
+							<div class="col-md-6">
+								<!-- <label for="lname">Last Name</label> -->
+								<input type="text" name="lname" class="form-control" placeholder="Your lastname">
 							</div>
 						</div>
-					</div>
-				</form>
-				{% endfor %}
+
+						<div class="row form-group">
+							<div class="col-md-12">
+								<input type="text" name="code" class="form-control" placeholder="Code link">
+							</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-md-12">
+								<!-- <label for="subject">Subject</label> -->
+								<input type="text" name="output" class="form-control" placeholder="Output file (if have)">
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="hidden" value={{task.t_id|e}} name="t_id">
+							<input type="submit" value=submit name="op" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
 			</div>
+
 		</div>
 	</div>
-
 	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
 
-	<!-- jQuery -->
 	<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
 	<!-- jQuery Easing -->
 	<script src="{{url_for('static', filename='js/jquery.easing.1.3.js')}}"></script>

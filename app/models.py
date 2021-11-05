@@ -51,12 +51,24 @@ class Codes:
         self.stars = stars
 
 
+class UserCodes:
+    def __init__(self, f_name, l_name, code, stars, output_file):
+        self.f_name = f_name
+        self.l_name = l_name
+        self.code = code
+        self.stars = stars
+        self.output_file = output_file
+
+
 class Tasks:
-    def __init__(self, t_id, d_id, name, description):
+    def __init__(self, t_id, name, description, d_id):
         self.t_id = t_id
         self.d_id = d_id
         self.name = name
         self.description = description
+
+    def __str__(self):
+        return f"t_id:{self.t_id}; d_id: {self.d_id}, name: {self.name}, description: {self.description}"
 
 
 class University:

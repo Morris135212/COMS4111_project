@@ -23,10 +23,6 @@ def followers():
     sql = "SELECT * FROM users WHERE u_id = %s"
     user = g.conn.execute(sql, u_id).fetchall()[0]
     user = Users(*user)
-    # following_query = "SELECT u.u_id, u.f_name, u.l_name, u.webpage_link, u.gold_medal, " \
-    #                   "u.silver_medal, u.bronze_medal, u.university_name" \
-    #                   "FROM follow f JOIN users u ON f.followed_id = u.u_id" \
-    #                   "WHERE f.follower_id = %s"
     followed_query = "SELECT u.u_id, u.f_name, u.l_name, u.webpage_link, u.gold_medal, " \
                      "u.silver_medal, u.bronze_medal, u.university_name " \
                      "FROM follow f JOIN users u ON f.follower_id = u.u_id " \
@@ -36,6 +32,6 @@ def followers():
     for i, result in enumerate(results):
         follower = Users(*result)
         followers.append(follower.__dict__)
-    context = dict(users=followers, USER="Followers of "+user.f_name+' '+user.l_name)
+    context = dict(users=followers, USER=user.f_name+' '+user.l_name)
     print(f"{context}, 页面主人: {u_id}")
     return render_template("users.html", **context)

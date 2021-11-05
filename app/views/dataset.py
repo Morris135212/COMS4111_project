@@ -1,7 +1,7 @@
 from flask import request, render_template, g, redirect
 
 from app import app
-from app.models import DataSets, Tasks, Users
+from app.models import DataSets, Tasks, Users, UserCodes
 import numpy as np
 
 COMPETITIONS = ['Titanic - Machine Learning from Disaster', 'NFL Health & Safety - Helmet Assignment']
@@ -26,7 +26,7 @@ def detail():
     sql = "SELECT * FROM datasets WHERE idx = %s"
     data = g.conn.execute(sql, idx).fetchall()[0]
     data = DataSets(*data)
-    query = "SELECT t.t_id, t.d_id, t.name, t.description " \
+    query = "SELECT t.t_id, t.name, t.description, t.d_id " \
             "FROM datasets d " \
             "INNER JOIN tasks t ON d.idx = t.d_id " \
             "WHERE d.idx = %s"
@@ -34,10 +34,95 @@ def detail():
     tasks = []
     for i, result in enumerate(results):
         task = Tasks(*result)
+        print(task)
         tasks.append(task.__dict__)
-    context = dict(tasks=tasks, dataset=data.name)
+    context = dict(tasks=tasks, dataset=data)
     print(f"{context}, idx: {idx}")
     return render_template("tasks.html", **context)
+
+
+@app.route("/task", methods=["POST", "GET"])
+def tasks():
+    t_id = request.form["t_id"]
+    query1 = "SELECT * FROM tasks WHERE t_id = %s"
+    result = g.conn.execute(query1, t_id).fetchall()[0]
+    task = Tasks(*result)
+    task = task.__dict__
+
+    d_id = request.form["d_id"]
+    query2 = "SELECT * FROM datasets WHERE idx = %s"
+    result = g.conn.execute(query2, d_id).fetchall()[0]
+    dataset = DataSets(*result)
+    dataset = dataset.__dict__
+
+    query3 = "SELECT u.f_name, u.l_name, c.code, c.stars, c.output_file " \
+             "from USERS u " \
+             "INNER JOIN Codes c ON " \
+             "u.u_id = c.u_id " \
+             "WHERE c.t_id = %s " \
+             "ORDER BY c.stars " \
+             "DESC LIMIT 10;"
+    results = g.conn.execute(query3, t_id).fetchall()
+    rank, usercodes = [], []
+    for i, result in enumerate(results):
+        rank.append(i + 1)
+        usercode = UserCodes(*result)
+        usercodes.append(usercode.__dict__)
+    context = dict(task=task, dataset=dataset, usercodes=usercodes, rank=rank)
+    return render_template("task.html", **context)
+
+
+@app.route("/submit_task", methods=["POST", "GET"])
+def submit_task():
+    t_id = request.form["t_id"]
+    query = "SELECT * FROM tasks WHERE t_id = %s"
+    result = g.conn.execute(query, t_id).fetchall()[0]
+    task = Tasks(*result)
+    context = dict(task=task)
+    return render_template("submit.html", **context)
+
+
+@app.route("/submit_code", methods=["POST", "GET"])
+def submit_code():
+    fname = request.form["fname"]
+    lname = request.form["lname"]
+    code = request.form["code"]
+    t_id = request.form["t_id"]
+    out_file = request.form["output"]
+    print(f"fname: {fname}, lname:{lname}, code:{code}, out_file: {out_file}, t_id: {t_id}")
+    sql = "SELECT * FROM USERS " \
+          "WHERE f_name = %s AND l_name = %s"
+    results = g.conn.execute(sql, fname, lname).fetchall()
+    try:
+        assert results, "You are not in database"
+        user = Users(*results[0])
+        try:
+            query_sql = "SELECT * FROM codes WHERE code = %s"
+            results = g.conn.execute(query_sql, code).fetchall()
+            print(results)
+            assert not results, "The results has been repeated submitted"
+            import uuid, datetime
+            idx = ''.join(np.random.choice(list(str(uuid.uuid1())), 20))
+            now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+            params = [idx, code, now_time, t_id, user.u_id]
+            if out_file != '':
+                insert_sql = "INSERT INTO codes (idx, code, submit_date, t_id, u_id, output_file) " \
+                             "VALUES (%s, %s, %s, %s, %s, %s)"
+                params.append(out_file)
+            else:
+                insert_sql = "INSERT INTO codes (idx, code, submit_date, t_id, u_id) " \
+                             "VALUES (%s, %s, %s, %s, %s)"
+            g.conn.execute(insert_sql, *params)
+        except Exception as e:
+            print(e)
+            context = dict(error=e)
+            return render_template("500.html", **context)
+    except Exception as e:
+        print(e)
+        context = dict(error=e)
+        return render_template("500.html", **context)
+    context = dict(message="You successfully submit the code!")
+    return render_template("success.html", **context)
 
 
 @app.route("/contribute", methods=["POST", "GET"])
