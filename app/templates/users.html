@@ -102,24 +102,26 @@
 		<div class="container">
 			<div class="row">
 				{% for user in users %}
-				<div class="col-md-3 animate-box text-center">
-					<div class="staff">
-						<div class="staff-img" style="background-image: url(static/images/person1.jpg);">
-							<ul class="fh5co-social">
-								<li><a href="{{user.webpage_link|e}}"><i class="icon-facebook2"></i></a></li>
-								<li><a href="{{user.webpage_link|e}}"><i class="icon-twitter2"></i></a></li>
-								<li><a href="{{user.webpage_link|e}}"><i class="icon-dribbble2"></i></a></li>
-								<li><a href="{{user.webpage_link|e}}"><i class="icon-github"></i></a></li>
-							</ul>
+				<form method="POST" action="/followers">
+					<div class="col-md-3 animate-box text-center">
+						<div class="staff">
+							<div class="staff-img" style="background-image: url(static/images/person1.jpg);">
+								<ul class="fh5co-social">
+									<li><a href="{{user.webpage_link|e}}"><i class="icon-facebook2"></i></a></li>
+									<li><a href="{{user.webpage_link|e}}"><i class="icon-twitter2"></i></a></li>
+									<li><a href="{{user.webpage_link|e}}"><i class="icon-dribbble2"></i></a></li>
+									<li><a href="{{user.webpage_link|e}}"><i class="icon-github"></i></a></li>
+								</ul>
+							</div>
+							<h3><a href="{{user.webpage_link|e}}">{{user.f_name|e }} {{user.l_name|e}}</a></h3>
+							<p>gold medal: {{user.gold_medal|e}}</p>
+							<p>silver medal: {{user.silver_medal|e}}</p>
+							<p>bronze medal: {{user.bronze_medal|e}}</p>
+							<input type="hidden" name="u_id" value={{user.u_id|e}}>
+							<p><input type="submit" name="Register" class="btn btn-primary btn-lg btn-reg" value="more"></p>
 						</div>
-						<h3><a href="{{user.webpage_link|e}}">{{user.f_name|e }} {{user.l_name|e}}</a></h3>
-						<p>gold medal: {{user.gold_medal|e}}</p>
-						<p>silver medal: {{user.silver_medal|e}}</p>
-						<p>bronze medal: {{user.bronze_medal|e}}</p>
-						<input type="hidden" name="u_id" value={{user.u_id|e}}>
-						<p><input type="submit" name="Register" class="btn btn-primary btn-lg btn-reg" value="more"></p>
 					</div>
-				</div>
+				</form>
 				{% endfor %}
 			</div>
 		</div>
