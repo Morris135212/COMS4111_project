@@ -135,6 +135,7 @@
                 	<tr>
                     	<td width="244px"  valign="top">
                         	<table width="100%" bgcolor="#ffffff">
+								<tr><td align="center" height="60px">Ranks</td></tr>
                             	{% for i in rank %}
                             	<tr><td align="center" height="60px">Rank {{i}}</td></tr>
                             	{% endfor %}
@@ -143,8 +144,9 @@
                     	<td width="20px"></td> <!--空隙-->
                     	<td width="240px" bgcolor="#ffffff">
                         	<table width="100%" bgcolor="#ffffff">
+								<tr><td align="center" height="60px">First name</td></tr>
                             	{% for usercode in usercodes %}
-                            	<tr><td align="center" height="60px">{{usercode.f_name|e}}</td></tr>
+								<tr><td align="center" height="60px"><a href="{{usercode.code|e}}">{{usercode.f_name|e}}</a></td></tr>
                             	{% endfor %}
                         	</table>
 
@@ -152,14 +154,16 @@
                     	<td width="20px"></td> <!--空隙-->
                     	<td width="240px" bgcolor="#ffffff">
                         	<table width="100%" bgcolor="#ffffff">
+								<tr><td align="center" height="60px">Last name</td></tr>
                             	{% for usercode in usercodes %}
-                            	<tr><td align="center" height="60px">{{usercode.l_name|e}}</td></tr>
+								<tr><td align="center" height="60px"><a href="{{usercode.code|e}}">{{usercode.l_name|e}}</a></td></tr>
                             	{% endfor %}
                         	</table>
                     	</td>
                     	<td width="20px"></td> <!--空隙-->
                     	<td width="240px" bgcolor="#ffffff">
                         	<table width="100%" bgcolor="#ffffff">
+								<tr><td align="center" height="60px">stars</td></tr>
                             	{% for usercode in usercodes %}
                             	<tr><td align="center" height="60px">{{usercode.stars|e}}</td></tr>
                             	{% endfor %}
