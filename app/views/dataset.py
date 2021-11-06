@@ -4,7 +4,7 @@ from app import app
 from app.models import DataSets, Tasks, Users, UserCodes
 import numpy as np
 
-COMPETITIONS = ['Titanic - Machine Learning from Disaster', 'NFL Health & Safety - Helmet Assignment']
+COMPTITIONS = ['Titanic - Machine Learning from Disaster', 'NFL Health & Safety - Helmet Assignment']
 
 
 @app.route("/dataset")
