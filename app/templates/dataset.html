@@ -117,7 +117,7 @@
 			</div>
 			<div class="row">
 				{% for dataset in datasets %}
-				<form method="POST" action="/dataset_detail">
+
 					<div class="col-md-6 animate-box">
 						<div class="course">
 							<a href="{{dataset.provenance|e}}" class="course-img" style="background-image: url(static/images/project-1.jpg);">
@@ -125,11 +125,16 @@
 							<div class="desc">
 								<h3 class="dd"><a href="#">{{dataset.name|e}}</a></h3>
 								<input type="hidden" name="dataset_idx" value="{{dataset.idx|e}}">
-								<input type="submit" class="btn btn-primary btn-sm btn-course" value="detail">
+								<form method="POST" action="/dataset_detail">
+									<input type="submit" class="btn btn-primary btn-sm btn-course" value="detail">
+								</form>
+								<form method="POST" action="/update_request">
+									<input type="submit" class="btn btn-primary btn-sm btn-course" value="update">
+								</form>
 							</div>
 						</div>
 					</div>
-				</form>
+
 				{% endfor %}
 			</div>
 		</div>
