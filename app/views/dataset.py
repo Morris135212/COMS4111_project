@@ -188,7 +188,7 @@ def update():
         results = g.conn.execute(sql, u_id, d_id).fetchall()
         print(results)
         try:
-            assert results, "This user or this dataset does not exist!"
+            assert results, "The user has no authorization for this dataset"
             insert_sql = "INSERT maintain (update_time, u_id, d_id) VALUES (%s, %s, %s)" \
                          "WHERE u_id = %s AND d_id = %s"
             import datetime
