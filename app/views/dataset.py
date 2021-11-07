@@ -4,7 +4,7 @@ from app import app
 from app.models import DataSets, Tasks, Users, UserCodes
 import numpy as np
 
-COMPETITIONS = ['Titanic - Machine Learning from Disaster', 'NFL Health & Safety - Helmet Assignment']
+COMPTITIONS = ['Titanic - Machine Learning from Disaster', 'NFL Health & Safety - Helmet Assignment']
 
 
 @app.route("/dataset")
@@ -163,6 +163,38 @@ def operation():
             except Exception as e:
                 context = dict(error=e)
                 return render_template("500.html", **context)
+            return render_template('success.html', **context)
+        except Exception as e:
+            print(e)
+            context = dict(error=e)
+            return render_template("500.html", **context)
+
+
+@app.route("/update_request", methods=["POST", "GET"])
+def update_request():
+    context = dict(operation="Update")
+    return render_template("update.html", **context)
+
+
+@app.route("/update", methods=["POST", "GET"])
+def update():
+    op = request.form["operation"]
+    u_id = request.form["u_id"]
+    d_id = request.form["d_id"]
+    print(f"u_id:{u_id}, d_id:{d_id}")
+    if op == "Update":
+        sql = "SELECT * FROM maintain " \
+              "WHERE u_id = %s AND d_id = %s"
+        results = g.conn.execute(sql, u_id, d_id).fetchall()
+        print(results)
+        try:
+            assert results, "This user or this dataset does not exist!"
+            insert_sql = "INSERT maintain (update_time, u_id, d_id) VALUES (%s, %s, %s)" \
+                         "WHERE u_id = %s AND d_id = %s"
+            import datetime
+            now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+            g.conn.execute(insert_sql, now_time, u_id, d_id, u_id, d_id)
+            context = dict(message="You have successfully add a new dataset!")
             return render_template('success.html', **context)
         except Exception as e:
             print(e)
