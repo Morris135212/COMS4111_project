@@ -45,22 +45,22 @@ The proposed application in this project is a platform for release and communica
 
 When user enters into the main page, they will see a welcome sign, and below that, they will see the following existing competitions, user can see the detail of each competition by clicking <b>More</b>.
 
-![main pages](/Users/maochenhui/Documents/competition.png)
+![main pages](https://raw.githubusercontent.com/Morris135212/COMS4111_project/main/app/static/images/competition.png)
 
 In the next pages we can see that user can check the details of the competition including the start date, the end date, the prize and the number of participants. These details are actually queried from the database **given the name of the competition**. Also we can see that within the same page, we can check the Top-10 score from this competition, this is one of the interesting queries we submit for *project 1 part2*.
 
 User can also choose to sign in for the competition by providing information including first name, last name, personal web pages, and university. Of course, the user must exist in the database, otherwise we will throw an error and direct to a fail page indicating that the user doesn't exist in the database.
 
-![image-20211106225233643](/Users/maochenhui/Library/Application Support/typora-user-images/image-20211106225233643.png)
+![detail_competition](https://raw.githubusercontent.com/Morris135212/COMS4111_project/main/app/static/images/detail_competition.png)
 
 ### Scenario 2: Users
 
 By clicking on the user button in the main page, we can enter into the User page, where we can see some details of all users in our system.  Here we can see that information includes users' name, the medal they obtained. Aslo by clicking on the users' image, we can enter into the personal page user provided in database. All this information are Selected from the database.
 
-![image-20211106230324098](/Users/maochenhui/Library/Application Support/typora-user-images/image-20211106230324098.png)
+![User](https://raw.githubusercontent.com/Morris135212/COMS4111_project/main/app/static/images/User.png)
 
 By clicking on Follower button, we can see all the followers for this user. To be mentioned, this is also one of the interesting queries we provide for part 2. By providing the user id of current user, we can check all followers of this user, and present that information.
 
-For example, the following image shows that current user have 4 followers.
+For example, the following image shows that current user  only have 1 followers.
 
-![image-20211106230634139](/Users/maochenhui/Library/Application Support/typora-user-images/image-20211106230634139.png)
+![Followers](https://raw.githubusercontent.com/Morris135212/COMS4111_project/main/app/static/images/Followers.png)
