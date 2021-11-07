@@ -22,7 +22,7 @@ def dataset():
 
 @app.route("/dataset_detail", methods=["POST", "GET"])
 def detail():
-    idx = request.form["dataset_idx"]
+    idx = request.form["d_id"]
     sql = "SELECT * FROM datasets WHERE idx = %s"
     data = g.conn.execute(sql, idx).fetchall()[0]
     data = DataSets(*data)
