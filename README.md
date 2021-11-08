@@ -34,7 +34,7 @@ The proposed application in this project is a platform for release and communica
 	2. You can roll down in the dataset page and visit the detial of the dataset called "Students Performance in Exams" to view its tasks.
 	
 	3. You can roll down to contribute a dataset in the dataset page with a registered user ID.
-	
+
 	4. You can update the dataset if you are its contributor, for example, you can try to update the dataset <Trump's Dataset> as a user Donald Trump (You cannot update the one you just contributed TODAY because MAINTAIN records the date in days only and that would cause duplicate.)
 	
 	5. You can roll down in the dataset page and use the contribute function to contribute a custom named dataset to this database.
