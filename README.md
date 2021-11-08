@@ -35,11 +35,11 @@ The proposed application in this project is a platform for release and communica
 	
 	3. You can roll down to contribute a dataset in the dataset page with a registered user ID.
 	
-	4. You can update the dataset that you just contributed. (You cannot update others because only contributor of a dataset have permission to update it.)
+	4. You can update the dataset if you are its contributor, for example, you can try to update the dataset <Trump's Dataset> as a user Donald Trump (You cannot update the one you just contributed TODAY because MAINTAIN records the date in days only and that would cause duplicate.)
 	
-	4. You can roll down in the dataset page and use the contribute function to contribute a custom named dataset to this database.
+	5. You can roll down in the dataset page and use the contribute function to contribute a custom named dataset to this database.
 	
-	5. You can sign in a listed competition.
+	6. You can sign in a listed competition.
 
 ### Scenario 1: Competition
 
